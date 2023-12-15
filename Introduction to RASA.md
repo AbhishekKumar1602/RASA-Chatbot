@@ -2,7 +2,7 @@
 
 ## Introduction to RASA
 
-* RASA** is an open-source conversational AI platform that allows developers to build and deploy natural language processing (NLP) based chatbots and virtual assistants. RASA is designed to handle both the natural language understanding (NLU) and the dialogue management aspects of conversational systems. It provides a flexible and customizable framework for creating context-aware and interactive conversational experiences.
+**RASA** is an open-source conversational AI platform that allows developers to build and deploy natural language processing (NLP) based chatbots and virtual assistants. RASA is designed to handle both the natural language understanding (NLU) and the dialogue management aspects of conversational systems. It provides a flexible and customizable framework for creating context-aware and interactive conversational experiences.
 
 ### Key Features
 
