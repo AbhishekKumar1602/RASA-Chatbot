@@ -78,7 +78,7 @@ The RASA SDK (Software Development Kit) is a set of tools and libraries that hel
 
 ## RASA X
 
-* RASA X** is a tool designed to complement the RASA Open Source framework, providing a user interface for developers, product managers, and non-technical users to collaborate on the development and improvement of conversational AI models. It simplifies tasks such as training models, managing conversations, and improving the performance of your chatbot.
+**RASA X** is a tool designed to complement the RASA Open Source framework, providing a user interface for developers, product managers, and non-technical users to collaborate on the development and improvement of conversational AI models. It simplifies tasks such as training models, managing conversations, and improving the performance of your chatbot.
 
 **Key Components and Features of the RASA X:**
 
