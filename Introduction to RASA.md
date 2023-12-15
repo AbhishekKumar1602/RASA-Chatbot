@@ -107,19 +107,26 @@ The RASA SDK (Software Development Kit) is a set of tools and libraries that hel
 When initializing a RASA project, the directory structure includes the following folders and files:
 
 - **actions:**
-  - This directory is designated for storing custom action files. Actions in RASA are executable pieces of code that respond to user messages. For instance, an action might involve calling an external API or implementing specific custom logic.
+  - This folder typically houses custom action files. Actions in RASA are executable pieces of code that respond to user messages. For instance, an action might involve calling an external API or implementing specific custom logic.
+    
+    - **Subfiles of "tests"**
 
 - **credentials.yml:**
   - This file serves as a secure repository for storing sensitive information like API keys, passwords, or other credentials essential for the chatbot. It emphasizes the importance of safeguarding such information and avoiding exposure in the codebase.
 
 - **domain.yml:**
-  - The domain.yml file outlines the domain of your chatbot, encompassing details about intents, entities, actions, and responses. Essentially, it defines what the chatbot comprehends and how it should respond to various user inputs.
+  - This file outlines the domain of your chatbot, encompassing details about intents, entities, actions, and responses. Essentially, it defines what the chatbot comprehends and how it should respond to various user inputs.
 
 - **tests:**
-  - This folder is dedicated to housing test cases for the chatbot. Thorough testing ensures that the chatbot functions as expected and adeptly handles diverse scenarios.
+  - This folder typically houses test cases for the chatbot. Thorough testing ensures that the chatbot functions as expected and adeptly handles diverse scenarios.
+     
+    - **Subfiles of "tests"**
+    
+      - **test_stories.yml:**
+        - This file typically contains test stories written in the Rasa conversation format. These stories are used for testing and evaluating the behavior of your chatbot or conversational agent. Each story represents a conversation between the user and the bot, along with the expected responses.
 
 - **config.yml:**
-  - Contained within this file are configuration settings for both Rasa NLU (Natural Language Understanding) and Rasa Core models. It specifies the pipeline for processing user messages and other pertinent settings related to model training.
+  - This file contains configuration settings for both Rasa NLU (Natural Language Understanding) and Rasa Core models. It specifies the pipeline for processing user messages and other pertinent settings related to model training.
 
 - **data:**
   - This folder typically houses training data for the chatbot, including examples of user messages, intents, entities, and corresponding responses. The training data is instrumental in training both the NLU and Core models.
@@ -127,10 +134,10 @@ When initializing a RASA project, the directory structure includes the following
     - **Subfiles of "data"**
 
       - **nlu.yml:**
-         - This file holds training examples for the Natural Language Understanding (NLU) module of the chatbot. It includes user message examples with corresponding intents and entities, with the NLU model responsible for understanding and extracting meaning from user input.
+        - This file holds training examples for the Natural Language Understanding (NLU) module of the chatbot. It includes user message examples with corresponding intents and entities, with the NLU model responsible for understanding and extracting meaning from user input.
 
       - **rules.yml:**
-         - The rules.yml file defines conversation rules for the chatbot. These rules specify behaviors based on certain conditions, often tied to detected intents and entities in user messages. Rules play a crucial role in directing the flow of the conversation.
+        - The rules.yml file defines conversation rules for the chatbot. These rules specify behaviors based on certain conditions, often tied to detected intents and entities in user messages. Rules play a crucial role in directing the flow of the conversation.
 
       - **stories.yml:**
         - Containing conversational stories, this file represents potential interactions between users and the chatbot. Each story comprises a sequence of user messages, bot responses, and potential actions. These stories are employed in training the RASA Core Model, which dictates the dialogue flow of the chatbot.
