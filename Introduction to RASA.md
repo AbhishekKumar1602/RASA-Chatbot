@@ -109,21 +109,9 @@ When initializing a RASA project, the directory structure includes the following
 
 - **actions:**: This folder typically houses custom action files. Actions in RASA are executable pieces of code that respond to user messages. For instance, an action might involve calling an external API or implementing specific custom logic.
   
-    - **Subfiles of "tests"**
+    - **Subfiles of "actions"**
       
-      - **action.py**: This file is used to define custom actions that your chatbot can take during a conversation. Actions are the responses or behaviors your bot exhibits in response to user inputs. The action.py file serves as the implementation of these custom actions. 
-
-- **credentials.yml:** This file serves as a secure repository for storing sensitive information like API keys, passwords, or other credentials essential for the chatbot. It emphasizes the importance of safeguarding such information and avoiding exposure in the codebase.
-
-- **domain.yml:** This file outlines the domain of your chatbot, encompassing details about intents, entities, actions, and responses. Essentially, it defines what the chatbot comprehends and how it should respond to various user inputs.
-
-- **tests:** This folder typically houses test cases for the chatbot. Thorough testing ensures that the chatbot functions as expected and adeptly handles diverse scenarios.
-  
-     - **Subfiles of "tests"**
-       
-       - **test_stories.yml:** This file typically contains test stories written in the Rasa conversation format. These stories are used for testing and evaluating the behavior of your chatbot or conversational agent. Each story represents a conversation between the user and the bot, along with the expected responses.
-
-- **config.yml:** This file contains configuration settings for both Rasa NLU (Natural Language Understanding) and Rasa Core models. It specifies the pipeline for processing user messages and other pertinent settings related to model training.
+      - **action.py**: This file is used to define custom actions that your chatbot can take during a conversation. Actions are the responses or behaviors your bot exhibits in response to user inputs. The action.py file serves as the implementation of these custom actions.
 
 - **data:** This folder typically houses training data for the chatbot, including examples of user messages, intents, entities, and corresponding responses. The training data is instrumental in training both the NLU and Core models.
 
@@ -135,11 +123,25 @@ When initializing a RASA project, the directory structure includes the following
 
       - **stories.yml:** Containing conversational stories, this file represents potential interactions between users and the chatbot. Each story comprises a sequence of user messages, bot responses, and potential actions. These stories are employed in training the RASA Core Model, which dictates the dialogue flow of the chatbot.
 
-- **endpoints.yml:** This file outlines the endpoints for the chatbot, such as the location of the Rasa Core server and any external services or APIs the chatbot may interact with. It aids in configuring connections between different components.
-
 - **models:** After training the chatbot, the resulting trained models are stored in this folder. These models include both the NLU model, responsible for understanding user input, and the Core model, determining the chatbot's response strategies.
 
-**NOTE**: Difference Between **`rules.yml`** And **`tories.yml`** 
+- **tests:** This folder typically houses test cases for the chatbot. Thorough testing ensures that the chatbot functions as expected and adeptly handles diverse scenarios.
+  
+     - **Subfiles of "tests"**
+       
+       - **test_stories.yml:** This file typically contains test stories written in the Rasa conversation format. These stories are used for testing and evaluating the behavior of your chatbot or conversational agent. Each story represents a conversation between the user and the bot, along with the expected responses.
+
+- **config.yml:** This file contains configuration settings for both Rasa NLU (Natural Language Understanding) and Rasa Core models. It specifies the pipeline for processing user messages and other pertinent settings related to model training.
+
+- **credentials.yml:** This file serves as a secure repository for storing sensitive information like API keys, passwords, or other credentials essential for the chatbot. It emphasizes the importance of safeguarding such information and avoiding exposure in the codebase.
+
+- **domain.yml:** This file outlines the domain of your chatbot, encompassing details about intents, entities, actions, and responses. Essentially, it defines what the chatbot comprehends and how it should respond to various user inputs.
+
+- **endpoints.yml:** This file outlines the endpoints for the chatbot, such as the location of the Rasa Core server and any external services or APIs the chatbot may interact with. It aids in configuring connections between different components.
+
+
+
+**NOTE**: Difference between **`rules.yml`** and **stories.yml`** 
 
 In Rasa, the rules.yml and stories.yml files are used to define the dialogue flow and behavior of the chatbot. While both files contribute to the conversation design, they serve slightly different purposes.
 
