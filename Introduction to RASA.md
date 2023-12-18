@@ -138,3 +138,18 @@ When initializing a RASA project, the directory structure includes the following
 - **endpoints.yml:** This file outlines the endpoints for the chatbot, such as the location of the Rasa Core server and any external services or APIs the chatbot may interact with. It aids in configuring connections between different components.
 
 - **models:** After training the chatbot, the resulting trained models are stored in this folder. These models include both the NLU model, responsible for understanding user input, and the Core model, determining the chatbot's response strategies.
+
+**NOTE**: Difference Between **`rules.yml`** And **`tories.yml`** 
+
+In Rasa, the rules.yml and stories.yml files are used to define the dialogue flow and behavior of the chatbot. While both files contribute to the conversation design, they serve slightly different purposes.
+
+**rules.yml:**
+  - **Purpose:** The rules.yml file is used to define explicit rules for the chatbot's behavior. Rules are more deterministic and can be seen as policy-based directives that guide the dialogue management without the need for a machine learning model.
+  - **Format:** A rule in the rules.yml file consists of a condition and a set of actions. If the condition specified in the rule is met, the associated actions are executed by the chatbot.
+  - **Use Cases:** Rules are useful for implementing specific behaviors, handling FAQs, or enforcing certain conversation paths based on simple conditions.
+
+**stories.yml:**
+  - **Purpose:** The stories.yml file is primarily used for training the dialogue management model. It contains example conversations or stories that demonstrate the expected flow of interactions between the user and the chatbot.
+  - **Format:** A story in the stories.yml file typically consists of a sequence of user inputs and corresponding bot actions, forming a dialogue flow. Each story represents a possible conversation scenario.
+  - **Training Data:** During training, Rasa's dialogue management model learns from these stories to predict the next action based on the user input.
+Example stories.yml content:
