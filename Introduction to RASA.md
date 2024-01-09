@@ -179,3 +179,184 @@ In Rasa, the rules.yml and stories.yml files are used to define the dialogue flo
   - **Format:** A story in the stories.yml file typically consists of a sequence of user inputs and corresponding bot actions, forming a dialogue flow. Each story represents a possible conversation scenario.
   - **Training Data:** During training, Rasa's dialogue management model learns from these stories to predict the next action based on the user input.
 Example stories.yml content:
+
+
+## Installation Procedure 
+
+1. Install Python and PIP
+```
+sudo apt update && sudo apt install python3 python3-venv python3-pip
+```
+
+2. Create and Activative Python Virtual Environment
+- Create a Python Virtual Environment in the directory where you want to install RASA And Activate it.
+```
+python3 -m venv ./VE_Name && source VE_Name/bin/activate
+```
+
+3. Install and Initalize RASA
+- In the same directory where python virtual environment is present install and initialize RASA
+```
+pip3 install rasa && rasa init
+```
+- Please enter a path where the project will be created [default: current directory]: Press Entre Key
+- Directory '/home/expadmin/Downloads' is not empty. Continue? (Y/n): Y
+- Do you want to train an initial model? 💪🏽 (Y/n) : n
+
+
+## Basic RASA Commands
+1. Train Model
+```
+rasa train
+```
+
+2. Start RASA Core Server with Trained Model
+```
+rasa run
+```
+- On Specific Port
+```
+rasa run --port [port_number]
+```
+- Default Port: 5005
+
+3. Start RASA Action Server Using the Rasa SDK.
+```
+rasa run actions	
+```
+- On Specific Port
+```
+rasa run actions --port [port_number]
+```
+- Defrault Port: 5055
+
+4. Load Trained Model and Talk to Bot on the Command Line.
+```
+rasa shell
+```
+- On Specific Port
+```
+rasa shell -p port_number
+```
+- Default Port: 5005
+- To close the Chat Enter "/stop" in Response. 
+
+## Basic Configration
+1. While using RASA Action Server for RASA SDK (actions.py) uncomment the following line in endpoints.yml
+
+```
+action_endpoint:
+ url: "http://localhost:5055/webhook"
+```
+ **NOTE**: Ensure to modify the port if the RASA Action Server is running on a different port.
+
+## RASA Workflow: Adding Intent and Training the Model
+
+### Step 1: Adding Intent and Training Data
+**Define Intent in nlu.yaml**
+- Specify the intent in the nlu.yaml file along with a balanced set of example data.
+- Example:
+```
+- intent: nlu_fallback
+  examples: |
+    - what are you doing
+    - tell me a joke
+    - sing me a song
+    - how tall are you
+    - what's your favorite color
+
+```
+- Incorporate entity classification and, if necessary, regular expressions for improved entity extraction.
+- Example(Without Regesx)
+```
+- intent: provide_name
+  examples: |
+    - I am [Abhishek](name)
+    - My name is [Sujeet](name)
+    - You can call me [Abhishek](name)
+    - I go by the name [Rehman](name)
+    - People call me [Amit](name)
+```
+- Example(With Regex)
+```
+- regex: account_number
+  examples: |
+    - \d{10,12}
+- intent: account_information
+  examples: |
+    - my account number is [1234567891](account_number)
+    - This is my account number [1234567891](account_number)
+```
+
+### Step 2: Configuring Domain
+**Define Intent, Entity, and Responses in domain.yaml**
+- Add the intent, entity, and corresponding responses in the domain.yaml file.
+- Example:
+```
+intents:
+  - nlu_fallback
+  - welcome
+  - provide_name
+
+entities:
+  - name
+
+responses:
+  utter_welcome:
+    - text: "Hello and Welcome to the Expedien eSolution. May I know your name?"
+  
+  utter_greet:
+    - text: "Hey {name}, nice meeting you! How can I help you today?"
+```
+- Optionally, map entities to slots and define actions for specific intents.
+- Example:
+```
+actions:
+  - action_greet
+
+slots:
+  name:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: name
+```
+
+### Step 3: Creating Stories
+**Map Intent and Response in story.yaml**
+- Create stories in the story.yaml file to train the bot on how to respond to specific intents.
+- Example:
+```
+- story: BASICS
+  steps:
+    - intent: welcome
+    - action: utter_welcome
+    - intent: provide_name
+    - action: action_greet
+```
+
+### Step 4: Creating Rules
+**Create Rule for a Specific Intent in rules.yaml**
+- Establish rules in the rules.yaml file to guide the bot's behavior based on certain conditions.
+- Example:
+```
+- rule: Ask the user to rephrase whenever they send a message with Low NLU Confidence
+  steps:
+  - intent: nlu_fallback
+  - action: utter_please_rephrase
+```
+
+### Step 5: Writing Custom Actions
+**Write Custom Action in actions.py**
+- Develop a custom action in the actions.py file to handle specific intents.
+- Example:
+```
+class ActionGreetUser(Action):
+    def name(self):
+        return 'action_greet'
+
+    def run(self, dispatcher, tracker, domain):
+        name = tracker.get_slot("name")
+        dispatcher.utter_message(template="utter_greet", name=name)
+        return []
+```
