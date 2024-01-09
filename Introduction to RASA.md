@@ -106,6 +106,31 @@ The RASA SDK (Software Development Kit) is a set of tools and libraries that hel
 ## RASA Project Structure
 
 When initializing a RASA project, the directory structure includes the following folders and files:
+```
+.
+|
+├── actions
+│   ├── __init__.py
+│   └── actions.py
+|
+├── data
+│   ├── nlu.yml
+│   └── stories.yml
+|
+├── models
+│   └── <timestamp>.tar.gz
+|
+├── tests
+|  └── test_stories.yml
+|
+├── config.yml
+|
+├── credentials.yml
+|
+├── domain.yml
+|
+└──  endpoints.yml
+```
 
 - **actions:**: This folder typically houses custom action files. Actions in RASA are executable pieces of code that respond to user messages. For instance, an action might involve calling an external API or implementing specific custom logic.
   
@@ -138,7 +163,6 @@ When initializing a RASA project, the directory structure includes the following
 - **domain.yml:** This file outlines the domain of your chatbot, encompassing details about intents, entities, actions, and responses. Essentially, it defines what the chatbot comprehends and how it should respond to various user inputs.
 
 - **endpoints.yml:** This file outlines the endpoints for the chatbot, such as the location of the Rasa Core server and any external services or APIs the chatbot may interact with. It aids in configuring connections between different components.
-
 
 
 **NOTE**: Difference between **`rules.yml`** and **stories.yml`** 
